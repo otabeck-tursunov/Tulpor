@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+	<title>Sections</title>
+	<style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Comic Sans MS";
+        }
+
+        body, html{
+            height: 100%;
+            position: relative;
+        }
+
+		header{
+            width: 100%;
+            position: fixed;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding: 10px 40px;
+			background-color: #fbaa41;
+			color: #fff;
+            font-size: 140%;
+		}
+
+        main {
+            background-image: url("/static/test3.jpg");
+            background-size: cover;
+            height: 100%;
+        }
+
+		.button-container{
+			padding: 160px 20vw 0;
+			display: flex;
+            flex-wrap: wrap;
+			justify-content: center;
+			align-items: center;
+			height: 400px;
+		}
+        
+		.button{
+			width: 20vw;
+			height: 12vh;
+			background-color: #fbaa41;
+            border: 2px solid #fbaa41;
+			color: #fff;
+			font-size: 24px;
+			margin: 100px 30px 0px 30px;
+			border-radius: 10px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			text-decoration: none;
+
+            font-weight: bold;
+		}
+
+        .button:hover {
+            box-shadow: 0 0 15px 3px #fbaa41;
+            color: #772500;
+            background-color: wheat;
+        }
+
+        nav {
+            display: flex;
+            gap: 50px;
+        }
+
+        a {
+            text-decoration: none;
+            color: white;
+        }
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Sections</h1>
+		<nav>
+			<a href="{% url 'taomlar' %}">Taomlar</a>
+			<a href="{% url 'ichimliklar' %}">Ichimliklar</a>
+			<a href="{% url 'joylar' %}">Joylar</a>
+			<a href="{% url 'buyurtmalar' %}">Buyurtmalar</a>
+		</nav>
+	</header>
+	<main>
+		<div class="button-container">
+			<a href="{% url 'taomlar' %}" class="button">Taomlar</a>
+			<a href="{% url 'ichimliklar' %}" class="button">Ichimliklar</a>
+			<a href="{% url 'joylar' %}" class="button">Joylar</a>
+			<a href="{% url 'buyurtmalar' %}" class="button">Buyurtmalar</a>
+		</div>
+	</main>
+</body>
+</html>

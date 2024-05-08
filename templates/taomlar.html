@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block title %} Taomlar {% endblock %}
+
+{% block taom_active %} active {% endblock %}
+
+{% block content %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Taomlar</h1>
+                    </div><!-- /.col -->
+
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{% url 'taomlar' %}" style="color: black">Taomlar</a>
+                            </li>
+                            <li class="breadcrumb-item active"><a href="{% url 'ichimliklar' %}">Ichimliklar</a></li>
+                            <li class="breadcrumb-item">
+                                <a href="{% url 'joylar' %}">Joylar</a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="{% url 'buyurtmalar' %}">Buyurtmalar</a></li>
+                            <li class="breadcrumb-item"><a href="{% url 'bolimlar' %}">Chiqish</a></li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+        <div class="col-md-12">
+            <div class="card card-dark">
+                <div class="card-header border-0">
+                    <div class="d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                            Taom qo'shish
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table" style="text-align: center;">
+                        <thead>
+                        <tr>
+                            <th scope="col" style="width: 15px">T/r</th>
+                            <th scope="col" style="width: 255px; text-align: center;">Nom</th>
+                            <th scope="col" style="text-align: center;">Narx</th>
+                            {#                            <th scope="col" style="text-align: center;">Narxi</th>#}
+                            {#                            <th scope="col" style="text-align: center;">Miqdori</th>#}
+                            <th colspan="2" scope="col" style="text-align: center;"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for taom in taomlar %}
+                            <tr>
+                                <th scope="row">{{ forloop.counter }}</th>
+                                <td>{{ taom.nom }}</td>
+                                <td>{{ taom.narx }} so'm</td>
+                                {#                                <td>530000 so'm</td>#}
+                                {#                                <td>50</td>#}
+                                <td colspan="2" style="display: flex; justify-content: right">
+                                    <a href="#" style="margin-right: 20px">
+                                        <button type="submit" class="btn btn-warning" data-toggle="modal">
+                                            Tahrirlash
+                                        </button>
+                                    </a>
+                                    <a href="/main/taomlar/{{ taom.id }}/o'chirish/">
+                                        <button type="submit" class="btn btn-danger" data-toggle="modal">
+                                            O'chirish
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header bg-dark">
+                        <h4 class="modal-title">Yangi taom</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                            <label for="new-product-name">Nomi:</label>
+                            <input type="text" name="nom" placeholder="Taom nomi..." id="new-product-name"
+                                   class="form-control" required>
+                            <br>
+                            <label for="new-product-name">Narxi:</label>
+                            <input type="text" name="narx" placeholder="Taom narxi..." id="new-product-price"
+                                   class="form-control" required>
+                            <br>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Qo`shish</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Yopish</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

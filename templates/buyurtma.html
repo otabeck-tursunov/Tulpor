@@ -1,0 +1,212 @@
+{% extends 'base.html' %}
+
+{% block title %} Buyurtma: {{ buyurtma.raqam }} {% endblock %}
+
+{% block buyurtma_active %} active {% endblock %}
+
+{% block content %}
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Buyurtma: {{ buyurtma.raqam }}</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="{% url 'taomlar' %}">Taomlar</a></li>
+                            <li class="breadcrumb-item ">
+                                <a href="{% url 'ichimliklar' %}">Ichimliklar</a>
+                            </li>
+                            <li class="breadcrumb-item ">
+                                <a href="{% url 'joylar' %}">Joylar</a>
+                            </li>
+                            <li class="breadcrumb-item active"><a href="{% url 'buyurtmalar' %}" style="color: black">Buyurtmalar</a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="{% url 'bolimlar' %}">Chiqish</a></li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+        <div class="col-md-12">
+            <div class="card card-dark">
+                <div class="card-header border-0">
+                    <div class="">
+                        {#                    d-flex justify-content-between#}
+                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                            Hech narsa
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table" style="text-align: center;">
+                        <thead>
+                        <tr>
+                            <th scope="col" style="width: 255px; text-align: center;">Raqam</th>
+                            <th scope="col" style="text-align: center;">Joy</th>
+                            <th scope="col" style="text-align: center;">Hisoblandi</th>
+                            <th scope="col" style="text-align: center;">Sana</th>
+                            <th colspan="2" scope="col" style="text-align: center;"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{ buyurtma.raqam }}</td>
+                            <td>{{ buyurtma.joy.raqam }} - joy</td>
+                            <td>{{ buyurtma.hisoblandi }}</td>
+                            <td>{{ buyurtma.sana|date:"Y-m-d" }}</td>
+                            <td colspan="2" style="display: flex; justify-content: right">
+                                <a href="#" style="margin-right: 20px">
+                                    <button type="submit" class="btn btn-warning" data-toggle="modal">
+                                        Tahrirlash
+                                    </button>
+                                </a>
+                                {#                            <a href="/stats/buyurtmalar/{{ buyurtma.raqam }}/o'chirish/">#}
+                                {#                                <button type="submit" class="btn btn-danger" data-toggle="modal">#}
+                                {#                                    O'chirish#}
+                                {#                                </button>#}
+                                {#                            </a>#}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card card-dark">
+                <div class="card-header border-0">
+                    <div class="">
+                        {#                    d-flex justify-content-between#}
+                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                            Taom qo'shish
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table" style="text-align: center;">
+                        <thead>
+                        <tr>
+                            <th scope="col" style="width: 15px">T/r</th>
+                            <th scope="col" style="width: 255px; text-align: center;">Nomi</th>
+                            <th scope="col" style="text-align: center;">Narxi</th>
+                            <th scope="col" style="text-align: center;">Miqdor</th>
+                            <th scope="col" style="text-align: center;">Jami: </th>
+                            <th colspan="2" scope="col" style="text-align: center;"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td> 1 </td>
+                            <td>Osh 0.7</td>
+                            <td>24 000 so'm</td>
+                            <td>2 dona</td>
+                            <td>48 000 so'm</td>
+                            <td colspan="2" style="display: flex; justify-content: right">
+                                <a href="#" style="margin-right: 20px">
+                                    <button type="submit" class="btn btn-warning" data-toggle="modal">
+                                        Tahrirlash
+                                    </button>
+                                </a>
+                                {#                            <a href="/stats/buyurtmalar/{{ buyurtma.raqam }}/o'chirish/">#}
+                                {#                                <button type="submit" class="btn btn-danger" data-toggle="modal">#}
+                                {#                                    O'chirish#}
+                                {#                                </button>#}
+                                {#                            </a>#}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card card-dark">
+                <div class="card-header border-0">
+                    <div class="">
+                        {#                    d-flex justify-content-between#}
+                        <button type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                            Ichimlik qo'shish
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table" style="text-align: center;">
+                        <thead>
+                        <tr>
+                            <th scope="col" style="width: 255px; text-align: center;">Raqam</th>
+                            <th scope="col" style="text-align: center;">Joy</th>
+                            <th scope="col" style="text-align: center;">Hisoblandi</th>
+                            <th scope="col" style="text-align: center;">Sana</th>
+                            <th colspan="2" scope="col" style="text-align: center;"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{ buyurtma.raqam }}</td>
+                            <td>{{ buyurtma.joy.raqam }} - joy</td>
+                            <td>{{ buyurtma.hisoblandi }}</td>
+                            <td>{{ buyurtma.sana|date:"Y-m-d" }}</td>
+                            <td colspan="2" style="display: flex; justify-content: right">
+                                <a href="#" style="margin-right: 20px">
+                                    <button type="submit" class="btn btn-warning" data-toggle="modal">
+                                        Tahrirlash
+                                    </button>
+                                </a>
+                                {#                            <a href="/stats/buyurtmalar/{{ buyurtma.raqam }}/o'chirish/">#}
+                                {#                                <button type="submit" class="btn btn-danger" data-toggle="modal">#}
+                                {#                                    O'chirish#}
+                                {#                                </button>#}
+                                {#                            </a>#}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Modal -->
+        <div class="modal" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header bg-dark">
+                        <h4 class="modal-title">Yangi buyurtma</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <form method="post" id="new-product-form">
+                        <div class="modal-body">
+                            <label for="new-product-name">Buyurtma raqami:</label>
+                            <input type="text" name="raqam" placeholder="Buyurtma raqami..." id="new-product-name"
+                                   class="form-control" required>
+                            <br>
+                            <label for="new-product-name">Brend:</label>
+                            <input type="text" name="pr_brand" placeholder="Mahsulot brendi..." id="new-product-brend"
+                                   class="form-control" required>
+                            <br>
+                            <label for="new-product-name">Narxi:</label>
+                            <input type="text" name="pr_price" placeholder="Maxsulot narxi..." id="new-product-price"
+                                   class="form-control" required>
+                            <br>
+                            <label for="new-product-name">Miqdori:</label>
+                            <input type="number" name="pr_amount" placeholder="Mahsulot miqdori..."
+                                   id="new-product-amount" class="form-control" required>
+                            <br>
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Qo`shish</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Yopish</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
