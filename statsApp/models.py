@@ -27,6 +27,9 @@ class BuyurtmaIchimlik(models.Model):
         verbose_name = 'Ichimlik'
         verbose_name_plural = 'Ichimliklar'
 
+    def jami(self):
+        return self.ichimlik.narx * self.soni
+
 
 class BuyurtmaTaom(models.Model):
     buyurtma = models.ForeignKey(Buyurtma, on_delete=models.CASCADE)
@@ -36,3 +39,7 @@ class BuyurtmaTaom(models.Model):
     class Meta:
         verbose_name = 'Taom'
         verbose_name_plural = 'Taomlar'
+
+
+    def jami(self):
+        return self.taom.narx * self.soni

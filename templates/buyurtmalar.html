@@ -67,11 +67,6 @@
                                 <td>{{ buyurtma.hisoblandi }}</td>
                                 <td>{{ buyurtma.sana|date:"Y-m-d" }}</td>
                                 <td colspan="2" style="display: flex; justify-content: right">
-                                    <a href="#" style="margin-right: 20px">
-                                        <button type="submit" class="btn btn-warning" data-toggle="modal">
-                                            Tahrirlash
-                                        </button>
-                                    </a>
                                     <a href="/stats/buyurtmalar/{{ buyurtma.raqam }}/o'chirish/">
                                         <button type="submit" class="btn btn-danger" data-toggle="modal">
                                             O'chirish
@@ -98,23 +93,15 @@
                     </div>
 
                     <!-- Modal body -->
-                    <form method="post" id="new-product-form">
+                    <form method="post">
+                        {% csrf_token %}
                         <div class="modal-body">
-                            <label for="new-product-name">Buyurtma raqami:</label>
-                            <input type="text" name="raqam" placeholder="Buyurtma raqami..." id="new-product-name"
-                                   class="form-control" required>
-                            <br>
-                            <label for="new-product-name">Brend:</label>
-                            <input type="text" name="pr_brand" placeholder="Mahsulot brendi..." id="new-product-brend"
-                                   class="form-control" required>
-                            <br>
-                            <label for="new-product-name">Narxi:</label>
-                            <input type="text" name="pr_price" placeholder="Maxsulot narxi..." id="new-product-price"
-                                   class="form-control" required>
-                            <br>
-                            <label for="new-product-name">Miqdori:</label>
-                            <input type="number" name="pr_amount" placeholder="Mahsulot miqdori..."
-                                   id="new-product-amount" class="form-control" required>
+                            <label>Joy:</label>
+                            <select name="joy" class="form-control" required>
+                                {% for joy in joylar %}
+                                    <option value="{{ joy.id }}">{{ joy.raqam }} - joy</option>
+                                {% endfor %}
+                            </select>
                             <br>
                         </div>
 
